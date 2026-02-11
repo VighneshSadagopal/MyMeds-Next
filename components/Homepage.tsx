@@ -3,7 +3,6 @@ import Navigation from "./Navigation";
 import Hero from "./sections/Hero";
 import BlogCard from "./sections/BlogCard";
 import LatestNews from "./sections/LatestNews";
-import { blogMockData } from "@/Mockdata";
 import { newsMockData } from "@/Mockdata";
 import { fetchBlogs } from "@/utils/drupal-api";
 
