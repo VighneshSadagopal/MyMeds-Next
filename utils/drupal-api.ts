@@ -2,7 +2,7 @@ import { NextDrupal } from "next-drupal"
 import { DrupalJsonApiParams } from "drupal-jsonapi-params";
 
 
-const drupal = new NextDrupal("https://mymeds.ddev.site:8443/"!);
+const drupal = new NextDrupal(process.env.NEXT_PUBLIC_DRUPAL_BASE_URL!, );
 
 
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0"; // To fix the development fetch error
@@ -42,9 +42,13 @@ export type SearchItem = {
   // add fields you actually use in UI
 };
 
-export async function searchProducts(query:string): Promise<SearchItem[]> {
+export type SearchResponse = {
+  items: SearchItem[];
+};
+
+export async function searchProducts(query: string): Promise<SearchResponse> {
   const q = query.trim();
-  if (!q) return [];
+  if (!q) return { items: [] }; // Return an empty object with items array
   const response = await fetch(`http://localhost:8000/api/products/search?q=${encodeURIComponent(q)}`, {
     method: "GET",
     headers: {
@@ -53,6 +57,5 @@ export async function searchProducts(query:string): Promise<SearchItem[]> {
     cache: "no-store", // Ensures fresh data
   });
 
-  
   return await response.json();
 }

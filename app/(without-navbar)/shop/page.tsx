@@ -93,7 +93,7 @@ export default function ShopPage() {
         setProducts(safe as Product[]);
       } else {
         const data = await searchProducts(searchValue);
-        setProducts(data.items);
+        setProducts(data.items as unknown as Product[]); // Access data.items
       }
     } catch (e) {
       setError(e instanceof Error ? e.message : "Something went wrong");
