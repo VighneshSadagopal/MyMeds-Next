@@ -5,7 +5,6 @@ import { DrupalJsonApiParams } from "drupal-jsonapi-params";
 const drupal = new NextDrupal(process.env.NEXT_PUBLIC_DRUPAL_BASE_URL!, );
 
 
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0"; // To fix the development fetch error
 
 
 export async function fetchBlogs() {
