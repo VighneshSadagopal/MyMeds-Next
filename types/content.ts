@@ -2,11 +2,15 @@ export interface Blogs {
     id: string;
     title: string;
     summary: string;
-    tag: string;
+    field_blog_types: string;
     readTime: string;
-    imageUrl: string;
+    field_blogimage: string;
     href: string;
-    imageAlt?: string;
+    field_media_image: {
+        uri: {
+            url: string;
+        };
+    };
 }
 
 export interface News {

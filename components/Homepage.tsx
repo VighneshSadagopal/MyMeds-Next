@@ -12,7 +12,6 @@ import { fetchBlogs } from "@/utils/drupal-api";
 export default async function HomePage() {
 const blogsData = await fetchBlogs();
 
-  console.log(blogsData);
     return (
        <main className="mx-auto max-w-[1280px] px-6 pb-20 lg:px-10">
 
