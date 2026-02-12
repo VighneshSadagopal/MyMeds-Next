@@ -17,7 +17,7 @@ export async function fetchBlogs(): Promise<Blogs[]> {
 
   const response = await drupal.getResourceCollection("node--blogs", {
     params: params.getQueryObject(),
-    cache: "force-cache" // Ensures fast loading
+    cache: "no-store" // Ensures fresh data
   });
 
   return response as Blogs[];
