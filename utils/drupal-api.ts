@@ -1,25 +1,26 @@
 import { NextDrupal } from "next-drupal"
 import { DrupalJsonApiParams } from "drupal-jsonapi-params";
+import { Blogs } from "@/types/content";
 
 
-const drupal = new NextDrupal(process.env.NEXT_PUBLIC_DRUPAL_BASE_URL!, );
+const drupal = new NextDrupal(process.env.NEXT_PUBLIC_DRUPAL_BASE_URL!,);
 
 
 
 
-export async function fetchBlogs() {
- const params = new DrupalJsonApiParams()
-   .addFields("node--blogs", ["id","title", "body","field_blog_types", "field_estimated_read_time", "field_blogimage"])
-   .addInclude(["field_blogimage.field_media_image", "field_blog_types"])
-   .addSort("created", "DESC");
+export async function fetchBlogs(): Promise<Blogs[]> {
+  const params = new DrupalJsonApiParams()
+    .addFields("node--blogs", ["id", "title", "body", "field_blog_types", "field_estimated_read_time", "field_blogimage"])
+    .addInclude(["field_blogimage.field_media_image", "field_blog_types"])
+    .addSort("created", "DESC");
 
 
- const response = await drupal.getResourceCollection("node--blogs", {
-   params: params.getQueryObject(),
-   cache: "force-cache" // Ensures fast loading
- });
+  const response = await drupal.getResourceCollection("node--blogs", {
+    params: params.getQueryObject(),
+    cache: "force-cache" // Ensures fast loading
+  });
 
- return response;
+  return response as Blogs[];
 }
 
 export async function fetchAllProducts() {
@@ -31,7 +32,7 @@ export async function fetchAllProducts() {
     cache: "no-store", // Ensures fresh data
   });
 
-  
+
   return await response.json();
 }
 

@@ -5,12 +5,14 @@ import BlogCard from "./sections/BlogCard";
 import LatestNews from "./sections/LatestNews";
 import { newsMockData } from "@/Mockdata";
 import { fetchBlogs } from "@/utils/drupal-api";
+import { Blogs } from "@/types/content";
 
 
 
 
 export default async function HomePage() {
 const blogsData = await fetchBlogs();
+
 
     return (
        <main className="mx-auto max-w-[1280px] px-6 pb-20 lg:px-10">
@@ -30,13 +32,12 @@ const blogsData = await fetchBlogs();
            </a>
          </div>
 
-         {/* <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
            {blogsData.map((blog) => (
 
                 <BlogCard key={blog.id} blog={blog} />
            ))}
-         </div> */}
-         asdasdasd
+         </div>
        </section>
 
        {/* Latest Medical News */}
